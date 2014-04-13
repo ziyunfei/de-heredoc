@@ -1,0 +1,15 @@
+{
+  "name": "de-heredoc",
+  "version": "0.0.1",
+  "description": "Transform \"heredoc call\" to \"string literal\" in JavaScript source code before minifications",
+  "main": "index.js",
+  "author": "ziyunfei",
+  "license": "MIT",
+  "dependencies": {
+    "uglify-js": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ziyunfei/de-heredoc"
+  }
+}
