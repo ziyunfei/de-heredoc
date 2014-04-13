@@ -1,6 +1,6 @@
 {
   "name": "de-heredoc",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Transform \"heredoc call\" to \"string literal\" in JavaScript source code before minifications",
   "main": "index.js",
   "author": "ziyunfei",
