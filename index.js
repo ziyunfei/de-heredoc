@@ -76,11 +76,13 @@ function getTreeTransformer(dependency, whitespace) {
 
     function isHeredocDefinition(definition) {
       return (definition.name.TYPE === "SymbolVar" &&
+        definition.value &&
         definition.value.TYPE === "Call" &&
         definition.value.expression.name === "require" &&
         definition.value.args.length === 1 &&
         matchDependency(dependency, definition.value.args[0].value)) ||
         (definition.name.TYPE === "SymbolVar" &&
+        definition.value &&
         definition.value.TYPE === "Dot" &&
         definition.value.TYPE === "Call" &&
         definition.value.expression.expression.name === "require" &&
