@@ -5,7 +5,7 @@ module.exports = function (code, options) {
   options = options || {}
   var from = options.from || "file"
   var dependency = options.dependency || "heredoc"
-  var treeTransformer = getTreeTransformer(dependency)
+  var treeTransformer = getTreeTransformer(dependency, options.whitespace)
   
   if(from === "ast") {
     var ast = code
@@ -26,7 +26,7 @@ module.exports = function (code, options) {
   }
 }
 
-function getTreeTransformer(dependency) {
+function getTreeTransformer(dependency, whitespace) {
   return new UglifyJS.TreeTransformer(function (node, descend) {
     if(node.TYPE === "Call" &&
       node.args.length === 1 &&
@@ -40,7 +40,7 @@ function getTreeTransformer(dependency) {
       var comment = node.args[0].end.comments_before[0].value
       comment = comment.replace(/^\s*?\n|\s*\n$/g, "")
       var arg = node.args[0].argnames[0]
-      var argname = arg ? arg.name : ""
+      var argname = arg ? arg.name : whitespace
       if(argname === "raw") {
         comment = comment
       } else if(argname === "oneline") {

@@ -29,7 +29,7 @@ var html='<div id="test">\n    <span>foo</span>\n    <span>bar</span>\n</div>';
 ```javascript
 deHeredoc(file[, options])
 ```
-`options` has 3 properties, `from` `dependency` `beautify`.
+`options` has 4 properties, `from` `dependency` `beautify` and `whitespace`.
 ### from
 Control `file`'s type.
 #### "file" (default)
@@ -74,9 +74,18 @@ if (1 + 1) {
 }
 */
 ```
+###whitespace
+Control whitespaces in output string literals, see [Whitespaces](#whitespaces)
+#### "indent" (default), "raw" and "oneline".
+```javascript
+deHeredoc('var foo=heredoc(function(){/*  foo   */})', {
+    from: "string",
+    whitespace: "oneline"
+}) // 'var foo="foo";'
+```
 ## Whitespaces
 You can use parameter name to control whitespaces in output string literals.
-### indent (default)
+### indent
 Strip the redundant leading whitespaces, and preserve other indents.
 ```javascript
 var html = heredoc(function(indent){/*
