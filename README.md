@@ -34,6 +34,10 @@ deHeredoc(file[, options])
 Control `file`'s type.
 #### "file" (default)
 `file` is a file path, change this file in place and return `undefined`.
+If the value of `from` is "file", then the `file` parameter can be an array.
+```javascript
+deHeredoc(["a.js", "b.js", "c.js"], {from: "file"})
+```
 #### "string"
 `file` is a string of JS source code, return the new source code.
 ```javascript

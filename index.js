@@ -12,14 +12,16 @@ module.exports = function (code, options) {
     return ast.transform(treeTransformer)
   }
   else if(from === "file") {
-    var file = code
-    var code = fs.readFileSync(file, "utf8")
-    fs.writeFileSync(file, getNewCode(), "utf8")
+    var files = [].concat(code)
+    files.forEach(function(file){
+      var code = fs.readFileSync(file, "utf8")
+      fs.writeFileSync(file, getNewCode(code), "utf8")
+    })
   }else if(from === "string"){
-    return getNewCode()
+    return getNewCode(code)
   }
 
-  function getNewCode() {
+  function getNewCode(code) {
     return UglifyJS.parse(code).transform(treeTransformer).print_to_string({
       beautify: options.beautify
     })
